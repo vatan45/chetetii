@@ -1,0 +1,211 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 10% 3.9%;
+    --foreground: 40 30% 96%;
+
+    --card: 240 10% 6%;
+    --card-foreground: 40 30% 96%;
+
+    --popover: 240 10% 6%;
+    --popover-foreground: 40 30% 96%;
+
+    --primary: 45 55% 52%;
+    --primary-foreground: 240 10% 3.9%;
+
+    --secondary: 30 30% 40%;
+    --secondary-foreground: 40 30% 96%;
+
+    --muted: 240 10% 10%;
+    --muted-foreground: 40 30% 80%;
+
+    --accent: 45 55% 16%;
+    --accent-foreground: 40 30% 96%;
+
+    --destructive: 0 62% 40%;
+    --destructive-foreground: 40 30% 96%;
+
+    --border: 45 30% 16%;
+    --input: 45 30% 16%;
+    --ring: 45 55% 50%;
+
+    --radius: 0.3rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-montserrat;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-cormorant font-medium;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+
+  p {
+    @apply leading-relaxed;
+  }
+
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gold/70 rounded hover:bg-gold;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-black/40 backdrop-blur-md border border-gold/20 shadow-lg;
+  }
+
+  .hover-scale {
+    @apply transition-transform duration-300 hover:scale-105;
+  }
+
+  .nav-link {
+    @apply text-cream hover:text-gold transition-colors relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-gold hover:after:w-full after:transition-all after:duration-300;
+  }
+
+  .btn-primary {
+    @apply bg-gold text-charcoal px-5 py-2.5 rounded-sm font-medium hover:bg-gold-dark transition-colors duration-300 shadow-md hover:shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent border border-gold text-cream px-5 py-2.5 rounded-sm font-medium hover:bg-gold/10 transition-colors duration-300;
+  }
+
+  .product-card {
+    @apply backdrop-blur-sm bg-black/60 shadow-lg rounded-sm border border-gold/20 overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-gold/40;
+  }
+
+  .section-padding {
+    @apply py-12 md:py-16;
+  }
+  
+  .benefit-pill {
+    @apply bg-gold/10 text-gold px-3 py-1 rounded-full text-xs font-medium border border-gold/30;
+  }
+  
+  .feature-card {
+    @apply bg-black/40 backdrop-blur-md border border-gold/20 p-6 rounded-sm transition-all duration-300 hover:border-gold/40 hover:shadow-lg;
+  }
+}
+
+.font-cormorant {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Animation classes */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.stagger-item.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom animations */
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, rgba(212,179,85,0) 0%, rgba(212,179,85,0.2) 50%, rgba(212,179,85,0) 100%);
+  background-size: 1000px 100%;
+  animation: shimmer 3s infinite linear;
+}
+
+/* Glow effect for gold elements */
+.gold-glow {
+  filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+}
+
+/* Custom dark theme classes */
+.gold-gradient {
+  @apply bg-gradient-to-r from-gold-dark via-gold to-gold-light;
+}
+
+.dark-gradient {
+  @apply bg-gradient-to-b from-charcoal-dark to-background;
+}
+
+.luxury-border {
+  @apply border border-gold/30;
+}
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.gold-text {
+  @apply bg-gradient-to-r from-gold-light via-gold to-gold-dark bg-clip-text text-transparent;
+}
+
+.image-mask {
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0));
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0));
+}
+
+/* Premium card effect */
+.premium-card {
+  @apply relative overflow-hidden bg-black/40 backdrop-blur-sm;
+}
+
+.premium-card::after {
+  content: '';
+  @apply absolute inset-0 bg-gold/5 opacity-0 transition-opacity duration-500;
+}
+
+.premium-card:hover::after {
+  @apply opacity-100;
+}
+
+.premium-card::before {
+  content: '';
+  @apply absolute -inset-x-full top-0 h-px bg-gold-gradient opacity-50 animate-shimmer;
+}
+
+/* Health benefits styling */
+.benefit-icon {
+  @apply w-12 h-12 rounded-full bg-gold/10 flex items-center justify-center text-gold border border-gold/30;
+}
